@@ -10,19 +10,17 @@ df.head()
 df.describe().T  # quantity nin ort:9, std: 218 aykırılıklar olabilir.
 df.shape #541910 gözlem birimi , 8 değişken var
 
-# Veri setinde eksik gözlem varmı?
 df.isnull().sum()
 
-# Eksik gözlemleri veri setinden çıkartıyoruz.
 df.dropna(inplace=True)
 
-# essiz urun sayisi nedir?
+
 df["StockCode"].nunique()
 
-# Hangi üründen kaçar tane vardır?
+
 df["Description"].value_counts().head()
 
-# En çok sipariş edilen 5 ürünün çoktan aza doğru sıraladık
+
 df.groupby("Description").agg({"Quantity": "sum"}).sort_values("Quantity", ascending=False).head()
 
 
@@ -48,7 +46,7 @@ rfm = df.groupby('Customer ID').agg({'InvoiceDate': lambda date: (today_date - d
 rfm.head()
 
 rfm.columns = ['recency', 'frequency', 'monetary']
-# isimlendirdik
+
 
 
 #RFM skorlarının oluşturulması
